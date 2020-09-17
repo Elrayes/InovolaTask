@@ -1,10 +1,8 @@
-
 from django.http.response import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from .CoffeeSerializer import *
 from .models import *
-
 
 # Create your views here.
 
@@ -18,7 +16,7 @@ def coffee_machines_products(request):
 
         if product_type:
             coffee_machines = coffee_machines.filter(product_type__product_type__contains=product_type)
-            print(product_type)
+
         if water_comb:
             if water_comb == 'true':
                 water_comb = True
@@ -31,7 +29,8 @@ def coffee_machines_products(request):
             return JsonResponse(coffee_serializer.data, safe=False)
         else:
             return JsonResponse({"message": "No machines presented with the entered filters"},
-                                status=status.HTTP_204_NO_CONTENT)
+                                status=status.HTTP_200_OK
+                                )
 
 
 @api_view(['GET'])
@@ -42,16 +41,19 @@ def coffee_pots_products(request):
     size = request.GET.get('pack_size', None)
 
     if product_type:
+        product_type = product_type.upper()
         pots = pots.filter(product_type__type__contains=product_type)
 
     if flavor:
+        flavor = flavor.lower()
         pots = pots.filter(coffee_flavor__flavor__contains=flavor)
     if size:
         pots = pots.filter(pack_size__contains=size)
 
     pots_serializer = CoffeePotSerializer(pots, many=True)
+
     if pots.count() > 0:
         return JsonResponse(pots_serializer.data, safe=False)
     else:
         return JsonResponse({"message": "No pots presented with the entered filters"},
-                            status=status.HTTP_204_NO_CONTENT)
+                            status=status.HTTP_200_OK)
