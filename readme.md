@@ -24,5 +24,5 @@ coffee machines: http://127.0.0.1:8000/coffee_machines
 
 coffee pots:     http://127.0.0.1:8000/coffee_pots
  
-database is not uploaded with the file and the data is as presented in the pdf 
+database is not uploaded with the project and the data is as presented in the pdf 
 
