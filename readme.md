@@ -20,8 +20,9 @@ then you connect the database.
 
 you have 2 links in the project as requested 
 
-http://127.0.0.1:8000/coffee_machines
-http://127.0.0.1:8000/coffee_pots
+coffee machines: http://127.0.0.1:8000/coffee_machines
+
+coffee pots:     http://127.0.0.1:8000/coffee_pots
  
 database is not uploaded with the file and the data is as presented in the pdf 
 
